@@ -1,0 +1,3 @@
+.vscode/**
+*.vsixnode_modules/
+*.vsix

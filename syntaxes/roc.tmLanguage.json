@@ -1,0 +1,217 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Roc",
+  "scopeName": "source.roc",
+  "fileTypes": [
+    "roc"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#chars"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#vars"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#punctuation"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.documentation.roc",
+          "match": "##.*$"
+        },
+        {
+          "name": "comment.line.number-sign.roc",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.roc",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.roc",
+          "match": "\\\\(u\\([0-9a-fA-F]+\\)|.)"
+        },
+        {
+          "name": "meta.interpolation.roc",
+          "begin": "\\$\\{",
+          "end": "\\}",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.interpolation.begin.roc"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.interpolation.end.roc"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "chars": {
+      "name": "string.quoted.single.roc",
+      "match": "'(\\\\.|[^'\\\\])'"
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.hex.roc",
+          "match": "\\b0x[0-9a-fA-F_]+(\\.[A-Z][A-Za-z0-9]*)?\\b"
+        },
+        {
+          "name": "constant.numeric.binary.roc",
+          "match": "\\b0b[01_]+(\\.[A-Z][A-Za-z0-9]*)?\\b"
+        },
+        {
+          "name": "constant.numeric.octal.roc",
+          "match": "\\b0o[0-7_]+(\\.[A-Z][A-Za-z0-9]*)?\\b"
+        },
+        {
+          "name": "constant.numeric.roc",
+          "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([eE][+-]?[0-9]+)?(\\.[A-Z][A-Za-z0-9]*)?\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.roc",
+          "match": "\\b(?:for!|(?:if|else|match|for|while|in|return|break|continue|crash|expect|dbg|where)\\b)"
+        },
+        {
+          "name": "keyword.control.import.roc",
+          "match": "\\b(import|exposing|as|app|module|package|packages|platform|requires|provides|exposes|hosted|targets)\\b"
+        },
+        {
+          "name": "storage.modifier.roc",
+          "match": "\\bvar\\b"
+        },
+        {
+          "name": "keyword.operator.word.roc",
+          "match": "\\b(and|or)\\b"
+        }
+      ]
+    },
+    "vars": {
+      "name": "variable.other.readwrite.roc",
+      "match": "\\$[a-z_][A-Za-z0-9_]*"
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "entity.name.function.effectful.roc",
+          "match": "\\b[a-z_][A-Za-z0-9_]*!"
+        },
+        {
+          "name": "entity.name.function.roc",
+          "match": "\\b[a-z_][A-Za-z0-9_]*(?=\\()"
+        },
+        {
+          "match": "^\\s*([a-z_][A-Za-z0-9_]*)\\s*(?==\\s*\\|)",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.roc"
+            }
+          }
+        }
+      ]
+    },
+    "types": {
+      "name": "entity.name.type.roc",
+      "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.arrow.roc",
+          "match": "->|=>"
+        },
+        {
+          "name": "keyword.operator.definition.roc",
+          "match": "::|:="
+        },
+        {
+          "name": "keyword.operator.range.roc",
+          "match": "\\.\\.[<=]|\\.\\."
+        },
+        {
+          "name": "keyword.operator.comparison.roc",
+          "match": "==|!=|<=|>=|<|>"
+        },
+        {
+          "name": "keyword.operator.arithmetic.roc",
+          "match": "//|\\+|-|\\*|/|%"
+        },
+        {
+          "name": "keyword.operator.try.roc",
+          "match": "\\?"
+        },
+        {
+          "name": "keyword.operator.pipe.roc",
+          "match": "\\|>"
+        },
+        {
+          "name": "keyword.operator.logical.roc",
+          "match": "!"
+        },
+        {
+          "name": "keyword.operator.assignment.roc",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.type.roc",
+          "match": ":"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.definition.parameters.roc",
+          "match": "\\|"
+        },
+        {
+          "name": "punctuation.separator.comma.roc",
+          "match": ","
+        },
+        {
+          "name": "punctuation.accessor.roc",
+          "match": "\\."
+        }
+      ]
+    }
+  }
+}

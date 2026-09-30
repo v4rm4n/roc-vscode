@@ -1,0 +1,91 @@
+{
+  "name": "roc-nightly",
+  "displayName": "Roc (nightly)",
+  "description": "Roc support for the new compiler nightlies, powered by `roc experimental-lsp`",
+  "version": "0.0.4",
+  "publisher": "adityavarman-manjunath",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters"
+  ],
+  "main": "./extension.js",
+  "icon": "images/icon.png",
+  "contributes": {
+    "languages": [
+      {
+        "id": "roc",
+        "aliases": [
+          "Roc",
+          "roc"
+        ],
+        "extensions": [
+          ".roc"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./images/icon.png",
+          "dark": "./images/icon.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "roc",
+        "scopeName": "source.roc",
+        "path": "./syntaxes/roc.tmLanguage.json"
+      },
+      {
+        "scopeName": "markdown.roc.codeblock",
+        "path": "./syntaxes/roc.codeblock.json",
+        "injectTo": [
+          "text.html.markdown"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.roc": "roc"
+        }
+      }
+    ],
+    "configuration": {
+      "title": "Roc",
+      "properties": {
+        "roc.path": {
+          "type": "string",
+          "default": "roc",
+          "description": "Path to the roc binary (a new-compiler nightly). Leave as `roc` if it is on your PATH."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "roc.restartServer",
+        "title": "Roc: Restart Language Server"
+      },
+      {
+        "command": "roc.toggleTypeHints",
+        "title": "Roc: Toggle Type Hints"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "roc.toggleTypeHints",
+        "key": "ctrl+k h",
+        "mac": "cmd+k h",
+        "when": "editorLangId == roc"
+      }
+    ],
+    "configurationDefaults": {
+      "[roc]": {
+        "editor.insertSpaces": false,
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  }
+}
