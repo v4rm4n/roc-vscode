@@ -1,9 +1,9 @@
 {
-  "name": "roc-nightly",
-  "displayName": "Roc (nightly)",
-  "description": "Roc support for the new compiler nightlies, powered by `roc experimental-lsp`",
+  "name": "roc-community",
+  "displayName": "Roc Community",
+  "description": "Unofficial, community-maintained VS Code support for the Roc programming language, including support for Roc compiler nightlies.",
   "version": "0.0.4",
-  "publisher": "adityavarman-manjunath",
+  "publisher": "v4rm4n",
   "license": "MIT",
   "engines": {
     "vscode": "^1.90.0"

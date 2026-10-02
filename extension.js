@@ -1,11 +1,29 @@
 const vscode = require("vscode");
-const { LanguageClient } = require("vscode-languageclient/node");
+const {
+  LanguageClient,
+  ErrorAction,
+  CloseAction,
+} = require("vscode-languageclient/node");
 const sig = require("./signature");
 
 let client;
 
 async function startClient() {
   const rocPath = vscode.workspace.getConfiguration("roc").get("path") || "roc";
+
+    const clientOptions = {
+    documentSelector: [{ scheme: "file", language: "roc" }],
+    errorHandler: {
+      // A single bad message: keep the connection, don't spam.
+      error: () => ({ action: ErrorAction.Continue }),
+      // The server process died (e.g. it got stuck and was killed):
+      // restart it, up to 5 times within 3 minutes, then give up.
+      closed: () => ({
+        action: CloseAction.Restart,
+        maxRestartCount: 5,
+      }),
+    },
+  };
 
   // The new compiler ships its language server inside the `roc` binary.
   const serverOptions = {

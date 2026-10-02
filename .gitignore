@@ -1,3 +1,4 @@
 .vscode/**
-*.vsixnode_modules/
+*.vsix
+node_modules/
 *.vsix
