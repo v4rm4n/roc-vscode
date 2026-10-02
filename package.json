@@ -2,7 +2,7 @@
   "name": "roc-community",
   "displayName": "Roc Community",
   "description": "Unofficial, community-maintained VS Code support for the Roc programming language, including support for Roc compiler nightlies.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "v4rm4n",
   "license": "MIT",
   "engines": {
