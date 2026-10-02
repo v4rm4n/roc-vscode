@@ -31,10 +31,6 @@ async function startClient() {
     args: ["experimental-lsp", "--stdio"],
   };
 
-  const clientOptions = {
-    documentSelector: [{ scheme: "file", language: "roc" }],
-  };
-
   client = new LanguageClient("roc", "Roc Language Server", serverOptions, clientOptions);
   await client.start();
 }
